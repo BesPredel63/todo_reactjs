@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import CategoriesList from "./Lists/Categories/CategoriesList";
 
 const Categories = () => {
 
@@ -10,24 +11,8 @@ const Categories = () => {
 
     return (
         <div>
-            <table className='table'>
-                <thead>
-                    <th>#</th>
-                    <th>Название</th>
-                    <th>Цвет</th>
-                </thead>
-                <tbody>
-                {
-                    categories.map(cat =>
-                        <tr>
-                            <td>{cat.id}</td>
-                            <td>{cat.title}</td>
-                            <td>{cat.color}</td>
-                        </tr>
-                    )
-                }
-                </tbody>
-            </table>
+            <h3>Категории</h3>
+            <CategoriesList categories={categories}/>
         </div>
     );
 };
