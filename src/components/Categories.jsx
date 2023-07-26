@@ -9,10 +9,14 @@ const Categories = () => {
         {id: 3, title: 'Личное', color: '#0000FF'},
     ])
 
+    const removeCategory = (category) => {
+        setCategories(categories.filter(c => c.id !== category.id))
+    }
+
     return (
         <div>
             <h3>Категории</h3>
-            <CategoriesList categories={categories}/>
+            <CategoriesList categories={categories} remove={removeCategory}/>
         </div>
     );
 };

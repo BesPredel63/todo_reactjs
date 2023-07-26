@@ -1,7 +1,7 @@
 import React from 'react';
 import CategoriesItem from "./CategoriesItem";
 
-const CategoriesList = ({categories}) => {
+const CategoriesList = ({categories, remove}) => {
     return (
         <>
             <table className='table'>
@@ -9,8 +9,9 @@ const CategoriesList = ({categories}) => {
                     <th>#</th>
                     <th>Название</th>
                     <th>Цвет</th>
+                    <th>Изменение списка</th>
                 </thead>
-                <CategoriesItem categories={categories}/>
+                <CategoriesItem categories={categories} remove={remove}/>
             </table>
         </>
     );
