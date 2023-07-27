@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import '../Lists/Categories/categoryStyle.css'
 
 const CategoryForm = ({create}) => {
 

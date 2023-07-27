@@ -6,8 +6,8 @@ const Categories = () => {
 
     const [categories, setCategories] = useState([
         {id: 1, title: 'Семья', color: '#008000'},
-        {id: 2, title: 'Работа', color: '#FF0000'},
-        {id: 3, title: 'Личное', color: '#0000FF'},
+        {id: 2, title: 'Работа', color: '#ff0000'},
+        {id: 3, title: 'Личное', color: '#0000ff'},
     ])
 
     const createCategory = (newCategory) => {

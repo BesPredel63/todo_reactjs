@@ -1,0 +1,14 @@
+.catForm {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+.inputColorBlock {
+    display: flex;
+    justify-content: center;
+}
+.inputColorSize {
+    width: 48px;
+    height: 38px;
+    padding: 0.3rem 0.45rem;
+}
