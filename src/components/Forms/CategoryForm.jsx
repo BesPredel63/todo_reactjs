@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 
 const CategoryForm = ({create}) => {
 
-    const defaultColor = '#0000FF'
-
     const [category, setCategory] = useState({
         title: '',
         color: ''
@@ -15,6 +13,7 @@ const CategoryForm = ({create}) => {
             id: Date.now(),
             ...category
         }
+        console.log('newCategory:', newCategory)
         create(newCategory)
         setCategory({
             title: '',
@@ -23,8 +22,9 @@ const CategoryForm = ({create}) => {
     }
 
     return (
-        <div className='row'>
-            <div className='col-md-3'>
+        <div className='row catForm'>
+            <h3>Добавить категорию</h3>
+            <div className='col-md-8'>
                 <input
                     type='text'
                     className='form-control'
@@ -33,16 +33,15 @@ const CategoryForm = ({create}) => {
                     onChange={event => setCategory({...category, title: event.target.value})}
                 />
             </div>
-            <div className='col-md-3'>
+            <div className='col-md-1 inputColorBlock'>
                 <input
-                    type="text"
-                    className='form-control'
-                    defaultValue={defaultColor}
+                    type="color"
+                    className='form-control inputColorSize'
                     value={category.color}
                     onChange={event => setCategory({...category, color: event.target.value})}
                 />
             </div>
-            <div className="col-md-3">
+            <div className="col-md-auto">
                 <button className='btn btn-primary' onClick={addCategory}>Добавить</button>
             </div>
         </div>
