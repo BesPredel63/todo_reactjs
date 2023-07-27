@@ -12,3 +12,7 @@
     height: 38px;
     padding: 0.3rem 0.45rem;
 }
+.btnSetting {
+    display: flex;
+    justify-content: space-between;
+}

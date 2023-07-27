@@ -7,10 +7,10 @@ const CategoriesList = ({categories, remove}) => {
             <table className='table'>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Название</th>
-                        <th>Цвет</th>
-                        <th>Изменение списка</th>
+                        <th className='col-md-1'>#</th>
+                        <th className='col-md-6'>Название</th>
+                        <th className='col-md-2'>Цвет</th>
+                        <th className='col-md-3'>Изменение списка</th>
                     </tr>
                 </thead>
                 <CategoriesItem categories={categories} remove={remove}/>
