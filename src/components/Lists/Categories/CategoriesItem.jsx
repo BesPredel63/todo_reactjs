@@ -6,8 +6,6 @@ const CategoriesItem = ({categories, update, remove}) => {
     const [isEditing, setIsEditing] = useState(false)
     const [currentCat, setCurrentCat] = useState()
 
-    console.log(isEditing)
-
     if (!categories.length) {
         return (
             <tbody>

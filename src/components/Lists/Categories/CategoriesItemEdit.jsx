@@ -13,7 +13,6 @@ const CategoriesItemEdit = ({currentCat, update, setIsEditing}) => {
             id: currentCat.id,
             ...cat
         }
-        console.log(tempCat)
         update(tempCat)
         setIsEditing(false)
     }

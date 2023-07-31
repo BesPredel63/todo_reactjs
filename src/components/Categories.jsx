@@ -27,11 +27,11 @@ const Categories = () => {
     }
 
     return (
-        <div>
+        <>
             <CategoryForm create={createCategory}/>
             <h3>Категории</h3>
             <CategoriesList categories={categories} update={upDateCategory} remove={removeCategory}/>
-        </div>
+        </>
     );
 };
 
