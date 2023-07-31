@@ -16,3 +16,10 @@
     display: flex;
     justify-content: space-between;
 }
+
+.colorCat {
+    display: block;
+    border-radius: 0.375rem;
+    width: 48px;
+    height: 38px;
+}

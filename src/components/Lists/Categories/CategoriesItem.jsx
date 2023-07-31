@@ -21,7 +21,7 @@ const CategoriesItem = ({categories, remove}) => {
                 <tr key={cat.id}>
                     <td>{index + 1}</td>
                     <td>{cat.title}</td>
-                    <td style={{color: `${cat.color}`}}>{cat.color}</td>
+                    <td><span className='colorCat' style={{background: `${cat.color}`}}></span></td>
                     <td className='btnSetting'>
                         <button className='btn btn-success'>Изменить</button>
                         <button className='btn btn-danger' onClick={() => remove(cat)}>Удалить</button>
