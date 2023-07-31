@@ -14,6 +14,14 @@ const Categories = () => {
         setCategories([...categories, newCategory])
     }
 
+    const upDateCategory = (editCategory) => {
+        categories.forEach((element, index) => {
+            if (element.id === editCategory.id) {
+                categories[index] = editCategory
+            }
+        })
+    }
+
     const removeCategory = (category) => {
         setCategories(categories.filter(c => c.id !== category.id))
     }
@@ -22,7 +30,7 @@ const Categories = () => {
         <div>
             <CategoryForm create={createCategory}/>
             <h3>Категории</h3>
-            <CategoriesList categories={categories} remove={removeCategory}/>
+            <CategoriesList categories={categories} update={upDateCategory} remove={removeCategory}/>
         </div>
     );
 };
