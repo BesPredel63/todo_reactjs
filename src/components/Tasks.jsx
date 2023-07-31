@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
+import TasksList from "./Lists/Tasks/TasksList";
 
 import '../components/Lists/Tasks/tasksStyle.css'
-import TasksList from "./Lists/Tasks/TasksList";
 
 const Tasks = () => {
 
@@ -10,7 +10,8 @@ const Tasks = () => {
             id: 1,
             title: 'Реализовать Frontend часть',
             executeDate: new Date('2023-07-31'),
-            description: 'Реализовать CRUD для всех компонентов. И еще какой то текст, для того чтобы проверить длину, на которую заполнится пространство',
+            description: 'Реализовать CRUD для всех компонентов. ' +
+                'И еще какой то текст, для того чтобы проверить длину, на которую заполнится пространство.',
             categoryId: 1
         },
         {

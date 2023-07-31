@@ -1,6 +1,6 @@
 .tasksBlock {
     margin-bottom: 15px;
-    border-bottom: 1px solid #27bbe7;
+    border-bottom: 1px solid #858585;
 }
 
 .tasksBlockItem {
@@ -10,12 +10,17 @@
 }
 
 .tasksBlockDescription {
-    padding-left: 30px;
-    max-width: 730px;
+    padding: 5px 0 0 20px;
 }
 
 .tasksBlockDate {
     padding-left: 25px;
     min-width: 300px;
     text-align: start;
+}
+
+.tasksBlockBtn {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
 }

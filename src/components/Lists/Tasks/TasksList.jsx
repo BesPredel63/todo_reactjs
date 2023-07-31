@@ -8,16 +8,27 @@ const TasksList = ({tasks}) => {
         <div>
             <h3>Задачи</h3>
             {
-                tasks.map(t =>
+                tasks.map((t, index) =>
                     <div className='row tasksBlock' key={t.id}>
-                        <strong>{t.id}. {t.title}</strong>
                         <div className='tasksBlockItem'>
-                            <div className='tasksBlockDescription'>
-                                {t.description}
+                            <div>
+                                <strong>{index + 1}. {t.title}</strong>
+                            </div>
+                            <div>
+                                <strong>Категория: </strong><span style={{color: 'red'}}>Работа</span>
                             </div>
                             <div className='tasksBlockDate'>
                                 <strong>Дата исполнения:</strong> {t.executeDate.toLocaleDateString(undefined, options)}
                             </div>
+                        </div>
+                        <div>
+                            <div className='tasksBlockDescription'>
+                                {t.description}
+                            </div>
+                        </div>
+                        <div className='tasksBlockBtn'>
+                            <button className='btn btn-success'>Изменить</button>
+                            <button className='btn btn-danger'>Удалить</button>
                         </div>
                     </div>
                 )
