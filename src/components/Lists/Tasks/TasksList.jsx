@@ -1,4 +1,8 @@
 import React from 'react';
+import EditButtonNoSvg from "../../UI/Buttons/noSvg/EditButtonNoSvg";
+import DeleteButtonNoSvg from "../../UI/Buttons/noSvg/DeleteButtonNoSvg";
+import EditButtonSvg from "../../UI/Buttons/svg/EditButtonSvg";
+import DeleteButtonSvg from "../../UI/Buttons/svg/DeleteButtonSvg";
 
 const TasksList = ({tasks}) => {
 
@@ -27,8 +31,8 @@ const TasksList = ({tasks}) => {
                             </div>
                         </div>
                         <div className='tasksBlockBtn'>
-                            <button className='btn btn-success'>Изменить</button>
-                            <button className='btn btn-danger'>Удалить</button>
+                            <EditButtonSvg>Изменить</EditButtonSvg>
+                            <DeleteButtonSvg>Удалить</DeleteButtonSvg>
                         </div>
                     </div>
                 )
