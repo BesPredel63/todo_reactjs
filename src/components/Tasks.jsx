@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import TasksList from "./Lists/Tasks/TasksList";
+// import TasksList from "./Lists/Tasks/TasksList";
 
 import '../components/Lists/Tasks/tasksStyle.css'
+import TasksForm from "./Forms/TasksForm";
 
 const Tasks = () => {
 
@@ -30,15 +31,16 @@ const Tasks = () => {
         },
     ])
 
-    const remoteTask = (delTask) => {
-        setTasks(tasks.filter(t => t.id !== delTask.id))
-    }
+    // const remoteTask = (delTask) => {
+    //     setTasks(tasks.filter(t => t.id !== delTask.id))
+    // }
 
 
     return (
         <>
-            <h3>Задачи</h3>
-            <TasksList tasks={tasks} remote={remoteTask}/>
+            <h2>Задачи</h2>
+            <TasksForm />
+            {/*<TasksList tasks={tasks} remote={remoteTask}/>*/}
         </>
     );
 };
