@@ -1,16 +1,19 @@
 import React from 'react';
 import EditButtonNoSvg from "../../UI/Buttons/noSvg/EditButtonNoSvg";
 import DeleteButtonNoSvg from "../../UI/Buttons/noSvg/DeleteButtonNoSvg";
-import EditButtonSvg from "../../UI/Buttons/svg/EditButtonSvg";
-import DeleteButtonSvg from "../../UI/Buttons/svg/DeleteButtonSvg";
 
-const TasksList = ({tasks}) => {
+const TasksList = ({tasks, remote}) => {
 
     const options = { year: 'numeric', month: 'long', day: 'numeric' }
 
+    if (!tasks.length) {
+        return (
+            <h4>Список задач пуст</h4>
+        )
+    }
+
     return (
         <div>
-            <h3>Задачи</h3>
             {
                 tasks.map((t, index) =>
                     <div className='row tasksBlock' key={t.id}>
@@ -31,8 +34,8 @@ const TasksList = ({tasks}) => {
                             </div>
                         </div>
                         <div className='tasksBlockBtn'>
-                            <EditButtonSvg>Изменить</EditButtonSvg>
-                            <DeleteButtonSvg>Удалить</DeleteButtonSvg>
+                            <EditButtonNoSvg>Изменить</EditButtonNoSvg>
+                            <DeleteButtonNoSvg onClick={() => remote(t)}>Удалить</DeleteButtonNoSvg>
                         </div>
                     </div>
                 )

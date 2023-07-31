@@ -30,10 +30,16 @@ const Tasks = () => {
         },
     ])
 
+    const remoteTask = (delTask) => {
+        setTasks(tasks.filter(t => t.id !== delTask.id))
+    }
 
 
     return (
-        <TasksList tasks={tasks} />
+        <>
+            <h3>Задачи</h3>
+            <TasksList tasks={tasks} remote={remoteTask}/>
+        </>
     );
 };
 
