@@ -1,0 +1,21 @@
+.tasksBlock {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #27bbe7;
+}
+
+.tasksBlockItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.tasksBlockDescription {
+    padding-left: 30px;
+    max-width: 730px;
+}
+
+.tasksBlockDate {
+    padding-left: 25px;
+    min-width: 300px;
+    text-align: start;
+}
