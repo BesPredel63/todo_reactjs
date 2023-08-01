@@ -39,6 +39,14 @@ const Tasks = () => {
         setModal(false)
     }
 
+    const upDateTask = (editTask) => {
+        tasks.forEach((element, index) => {
+            if (element.id === editTask.id) {
+                tasks[index] = editTask
+            }
+        })
+    }
+
     const remoteTask = (delTask) => {
         setTasks(tasks.filter(t => t.id !== delTask.id))
     }
@@ -55,7 +63,7 @@ const Tasks = () => {
                 <TasksForm create={createTask}/>
             </ModalTasks>
 
-            <TasksList tasks={tasks} remote={remoteTask}/>
+            <TasksList tasks={tasks} update={upDateTask} remote={remoteTask}/>
         </div>
     );
 };

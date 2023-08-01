@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import EditButtonNoSvg from "../../UI/Buttons/noSvg/EditButtonNoSvg";
 import DeleteButtonNoSvg from "../../UI/Buttons/noSvg/DeleteButtonNoSvg";
-import ModalTasks from "../../UI/ModalWindow/ModalTasks";
 import TaskEdit from "./TaskEdit";
 
-const TasksList = ({tasks, remote}) => {
+const TasksList = ({tasks, update, remote}) => {
 
-    const [modal, setModal] = useState(false)
+    const [isEditing, setIsEditing] = useState(false)
     const [currentTask, setCurrentTask] = useState()
 
     // Настройки для локализации даты - необходимо доработать
@@ -20,14 +19,11 @@ const TasksList = ({tasks, remote}) => {
         )
     }
 
-    console.log('currentTask: ', currentTask)
-    console.log('modal: ', modal)
-
     return (
         <div>
             {
                 tasks.map((t, index) =>
-                    currentTask !== t
+                    currentTask !== t || isEditing !== true
                     ?
                     <div className='row tasksBlock' key={t.id}>
                         <div className='tasksBlockItem'>
@@ -49,15 +45,15 @@ const TasksList = ({tasks, remote}) => {
                         <div className='tasksBlockBtn'>
                             <EditButtonNoSvg onClick={() => {
                                 setCurrentTask(t)
-                                setModal(true)}}
-                            >Изменить</EditButtonNoSvg>
+                                setIsEditing(true)}}
+                            >
+                                Изменить
+                            </EditButtonNoSvg>
                             <DeleteButtonNoSvg onClick={() => remote(t)}>Удалить</DeleteButtonNoSvg>
                         </div>
                     </div>
                     :
-                        <ModalTasks visible={modal} setVisible={setModal}>
-                            <TaskEdit current={currentTask}/>
-                        </ModalTasks>
+                        <TaskEdit currentTask={currentTask} update={update} setIsEditing={setIsEditing}/>
                 )
             }
         </div>
