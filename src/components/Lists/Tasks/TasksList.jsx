@@ -4,7 +4,10 @@ import DeleteButtonNoSvg from "../../UI/Buttons/noSvg/DeleteButtonNoSvg";
 
 const TasksList = ({tasks, remote}) => {
 
-    const options = { year: 'numeric', month: 'long', day: 'numeric' }
+    // Настройки для локализации даты - необходимо доработать
+    // при сохранении новой записи выдает ошибку, возможно нужна проверка данных или на выхоже получаем не тот тип данных
+    // const options = { year: 'numeric', month: 'long', day: 'numeric' }
+    //     .toLocaleDateString(undefined, options)
 
     if (!tasks.length) {
         return (
@@ -22,10 +25,10 @@ const TasksList = ({tasks, remote}) => {
                                 <strong>{index + 1}. {t.title}</strong>
                             </div>
                             <div>
-                                <strong>Категория: </strong><span style={{color: 'red'}}>Работа</span>
+                                <strong>Категория: </strong><span style={{color: 'red'}}>{t.categoryId}</span>
                             </div>
                             <div className='tasksBlockDate'>
-                                <strong>Дата исполнения:</strong> {t.executeDate.toLocaleDateString(undefined, options)}
+                                <strong>Дата исполнения:</strong> {t.executeDate}
                             </div>
                         </div>
                         <div>

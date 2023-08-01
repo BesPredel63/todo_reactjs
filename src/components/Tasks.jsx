@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-// import TasksList from "./Lists/Tasks/TasksList";
-
+import TasksList from "./Lists/Tasks/TasksList";
 import '../components/Lists/Tasks/tasksStyle.css'
 import TasksForm from "./Forms/TasksForm";
+import ModalTasks from "./UI/ModalWindow/ModalTasks";
+import AddButtonSvg from "./UI/Buttons/svg/AddButtonSvg";
 
 const Tasks = () => {
 
@@ -10,38 +11,52 @@ const Tasks = () => {
         {
             id: 1,
             title: 'Реализовать Frontend часть',
-            executeDate: new Date('2023-07-31'),
+            executeDate: '2023-07-31',
             description: 'Реализовать CRUD для всех компонентов. ' +
                 'И еще какой то текст, для того чтобы проверить длину, на которую заполнится пространство.',
-            categoryId: 1
+            categoryId: 'Рабоча'
         },
         {
             id: 2,
             title: 'Реализовать Backend часть',
-            executeDate: new Date('2023-08-07'),
+            executeDate: '2023-08-07',
             description: 'Прием запросов с помощью JSON',
-            categoryId: 2
+            categoryId: 'Семья'
         },
         {
             id: 3,
             title: 'Реализовать авторизацию',
-            executeDate: new Date('2023-08-14'),
+            executeDate: '2023-08-14',
             description: 'Настроить вход и регистрацию',
-            categoryId: 3
+            categoryId: 'Личное'
         },
     ])
 
-    // const remoteTask = (delTask) => {
-    //     setTasks(tasks.filter(t => t.id !== delTask.id))
-    // }
+    const [modal, setModal] = useState(false)
+
+    const createTask = (newTask) => {
+        setTasks([...tasks, newTask])
+        setModal(false)
+    }
+
+    const remoteTask = (delTask) => {
+        setTasks(tasks.filter(t => t.id !== delTask.id))
+    }
 
 
     return (
-        <>
+        <div>
             <h2>Задачи</h2>
-            <TasksForm />
-            {/*<TasksList tasks={tasks} remote={remoteTask}/>*/}
-        </>
+
+            <AddButtonSvg onClick={() => setModal(true)}>
+                Новая задача
+            </AddButtonSvg>
+            <ModalTasks visible={modal} setVisible={setModal}>
+                <TasksForm create={createTask}/>
+            </ModalTasks>
+
+            <TasksList tasks={tasks} remote={remoteTask}/>
+        </div>
     );
 };
 
