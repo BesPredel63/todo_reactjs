@@ -21,6 +21,7 @@ const CategoriesItemEdit = ({currentCat, update, setIsEditing}) => {
         e.preventDefault()
         setIsEditing(false)
     }
+
     return (
         <tr key={cat.id}>
             <td></td>
