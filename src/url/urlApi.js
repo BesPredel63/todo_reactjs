@@ -1,7 +1,5 @@
-export const SERVER_URL = 'http://localhost:5000/'
+export const SERVER_URL = 'http://localhost:5000/api'
 
-export const CategoryGetAll = 'api/Categories'
-export const CategoryGetById = 'api/Categories/'
+export const urlCategories = SERVER_URL + '/Categories'
 
-export const GoalsGetAll = 'api/Goals'
-export const GoalsGetById = 'api/Goals/'
+export const urlGoals = '/Goals'

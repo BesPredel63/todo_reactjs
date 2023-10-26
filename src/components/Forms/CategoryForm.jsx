@@ -8,10 +8,11 @@ const CategoryForm = ({create}) => {
         color: ''
     })
 
+    console.log('category: ', category)
+
     const addCategory = (e) => {
         e.preventDefault()
         const newCategory = {
-            id: Date.now(),
             ...category
         }
         console.log('newCategory:', newCategory)
