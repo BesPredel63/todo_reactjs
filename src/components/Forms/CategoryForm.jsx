@@ -8,8 +8,6 @@ const CategoryForm = ({create}) => {
         color: ''
     })
 
-    console.log('category: ', category)
-
     const addCategory = (e) => {
         e.preventDefault()
         const newCategory = {

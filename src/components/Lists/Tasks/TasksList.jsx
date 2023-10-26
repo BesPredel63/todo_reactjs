@@ -31,7 +31,7 @@ const TasksList = ({tasks, update, remote}) => {
                                 <strong>{index + 1}. {t.title}</strong>
                             </div>
                             <div>
-                                <strong>Категория: </strong><span style={{color: 'red'}}>{t.categoryId}</span>
+                                <strong>Категория: </strong><span style={{color: 'red'}}>{t.categories}</span>
                             </div>
                             <div className='tasksBlockDate'>
                                 <strong>Дата исполнения:</strong> {t.executeDate}

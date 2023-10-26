@@ -13,14 +13,18 @@ const Categories = () => {
 
     const [categories, setCategories] = useState([])
 
-    async function getAllCategory() {
-        await fetch(urlCategories)
-            .then(response => response.json())
-            .then(response => setCategories(response))
+    async function getAllCategories() {
+        try {
+            await fetch(urlCategories)
+                .then(response => response.json())
+                .then(response => setCategories(response))
+        } catch (error) {
+            console.error('ERROR: ', error)
+        }
     }
 
     useEffect(() => {
-        getAllCategory()
+        getAllCategories()
     }, [])
 
     async function createCategory (newCategory) {
@@ -34,7 +38,7 @@ const Categories = () => {
                 },
             });
             setCategories(newCategory)
-            getAllCategory()
+            getAllCategories()
         } catch (error) {
             console.error("Ошибка:", error);
         }
@@ -51,7 +55,7 @@ const Categories = () => {
                 },
             })
             setCategories(editCategory)
-            getAllCategory()
+            getAllCategories()
         } catch (error) {
             console.error("Ошибка:", error);
         }
@@ -68,7 +72,7 @@ const Categories = () => {
                 },
             })
             setCategories(category)
-            getAllCategory()
+            getAllCategories()
         } catch (error) {
             console.error("Ошибка:", error);
         }

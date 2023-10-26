@@ -1,54 +1,70 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import TasksList from "./Lists/Tasks/TasksList";
 import '../components/Lists/Tasks/tasksStyle.css'
 import TasksForm from "./Forms/TasksForm";
 import ModalTasks from "./UI/ModalWindow/ModalTasks";
 import AddButtonSvg from "./UI/Buttons/svg/AddButtonSvg";
+import {urlGoals} from "../url/urlApi";
 
 const Tasks = () => {
 
-    const [tasks, setTasks] = useState([
-        {
-            id: 1,
-            title: 'Реализовать Frontend часть',
-            executeDate: '2023-07-31',
-            description: 'Реализовать CRUD для всех компонентов. ' +
-                'И еще какой то текст, для того чтобы проверить длину, на которую заполнится пространство.',
-            categoryId: 'Рабоча'
-        },
-        {
-            id: 2,
-            title: 'Реализовать Backend часть',
-            executeDate: '2023-08-07',
-            description: 'Прием запросов с помощью JSON',
-            categoryId: 'Семья'
-        },
-        {
-            id: 3,
-            title: 'Реализовать авторизацию',
-            executeDate: '2023-08-14',
-            description: 'Настроить вход и регистрацию',
-            categoryId: 'Личное'
-        },
-    ])
+    // const [tasks, setTasks] = useState([
+    //     {
+    //         id: 1,
+    //         title: 'Реализовать Frontend часть',
+    //         executeDate: '2023-07-31',
+    //         description: 'Реализовать CRUD для всех компонентов. ' +
+    //             'И еще какой то текст, для того чтобы проверить длину, на которую заполнится пространство.',
+    //         categoryId: 'Рабоча'
+    //     },
+    //     {
+    //         id: 2,
+    //         title: 'Реализовать Backend часть',
+    //         executeDate: '2023-08-07',
+    //         description: 'Прием запросов с помощью JSON',
+    //         categoryId: 'Семья'
+    //     },
+    //     {
+    //         id: 3,
+    //         title: 'Реализовать авторизацию',
+    //         executeDate: '2023-08-14',
+    //         description: 'Настроить вход и регистрацию',
+    //         categoryId: 'Личное'
+    //     },
+    // ])
 
+    const [goals, setGoals] = useState([])
     const [modal, setModal] = useState(false)
 
+    async function getAllGoals() {
+        try {
+            await fetch(urlGoals)
+                .then(response => response.json())
+                .then(response => setGoals(response))
+        } catch (error) {
+            console.error('ERROR: ', error)
+        }
+    }
+
+    useEffect(() => {
+        getAllGoals()
+    }, [])
+
     const createTask = (newTask) => {
-        setTasks([...tasks, newTask])
-        setModal(false)
+        // setTasks([...tasks, newTask])
+        // setModal(false)
     }
 
     const upDateTask = (editTask) => {
-        tasks.forEach((element, index) => {
-            if (element.id === editTask.id) {
-                tasks[index] = editTask
-            }
-        })
+        // tasks.forEach((element, index) => {
+        //     if (element.id === editTask.id) {
+        //         tasks[index] = editTask
+        //     }
+        // })
     }
 
     const remoteTask = (delTask) => {
-        setTasks(tasks.filter(t => t.id !== delTask.id))
+        //setTasks(tasks.filter(t => t.id !== delTask.id))
     }
 
 
@@ -63,7 +79,7 @@ const Tasks = () => {
                 <TasksForm create={createTask}/>
             </ModalTasks>
 
-            <TasksList tasks={tasks} update={upDateTask} remote={remoteTask}/>
+            <TasksList tasks={goals} update={upDateTask} remote={remoteTask}/>
         </div>
     );
 };
