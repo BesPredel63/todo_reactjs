@@ -68,12 +68,21 @@ const Tasks = () => {
         }
     }
 
-    const upDateTask = (editTask) => {
-        // tasks.forEach((element, index) => {
-        //     if (element.id === editTask.id) {
-        //         tasks[index] = editTask
-        //     }
-        // })
+    async function upDateTask (editTask) {
+        try {
+            await fetch(urlGoals + '/' + `${editTask.id}`, {
+                method: "PUT",
+                mode: 'cors',
+                body: JSON.stringify(editTask),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            setGoals(editTask)
+            getAllGoals()
+        } catch (error) {
+            console.error("Ошибка:", error);
+        }
     }
 
     async function remoteTask (delTask) {

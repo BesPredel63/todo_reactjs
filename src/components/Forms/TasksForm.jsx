@@ -62,8 +62,8 @@ const TasksForm = ({create}) => {
                 <div className='col-md-4'>
                     <select
                         className='form-select'
-                        //value={task.categoryId}
-                        //onChange={e => setTask({...task, categoryId: e.target.value})}
+                        value={task.categoryId}
+                        onChange={e => setTask({...task, categoryId: e.target.value})}
                     >
                         {options}
                     </select>

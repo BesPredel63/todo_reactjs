@@ -31,6 +31,7 @@ const TaskEdit = ({currentTask, update, setIsEditing}) => {
             <div className='tasksBlockItem'>
                 <div>
                     <input
+                        className='form-control'
                         type="text"
                         value={task.title}
                         onChange={e => setTask({...task, title: e.target.value})}
@@ -45,6 +46,7 @@ const TaskEdit = ({currentTask, update, setIsEditing}) => {
                 </div>
                 <div className='tasksBlockDate'>
                     <input
+                        className='form-control'
                         type="date"
                         value={task.executeDate}
                         onChange={e => setTask({...task, executeDate: e.target.value})}
@@ -54,14 +56,17 @@ const TaskEdit = ({currentTask, update, setIsEditing}) => {
             <div>
                 <div className='tasksBlockDescription'>
                     <textarea
+                        className='form-control'
+                        cols="30"
+                        rows="6"
                         value={task.description}
                         onChange={e => setTask({...task, description: e.target.value})}
                     />
                 </div>
             </div>
             <div className='tasksBlockBtn'>
-                <EditButtonSvg onClick={upDateTask}>Сохранить</EditButtonSvg>
-                <DeleteButtonSvg onClick={cancelUpdate}>Удалить</DeleteButtonSvg>
+                <button className='btn btn-outline-success' onClick={upDateTask}>Сохранить</button>
+                <button className='btn btn-outline-danger' onClick={cancelUpdate}>Отмена</button>
             </div>
         </div>
     );
