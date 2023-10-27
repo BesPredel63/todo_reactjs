@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import EditButtonSvg from "../UI/Buttons/svg/EditButtonSvg";
+import {urlCategories} from "../../url/urlApi";
 
 const TasksForm = ({create}) => {
 
@@ -7,21 +8,40 @@ const TasksForm = ({create}) => {
         title: '',
         executeDate: new Date(),
         description: '',
+        isActive: true,
         categoryId: ''
     })
+    const [categories, setCategories] = useState([])
+
+    async function getAllCategories() {
+        try {
+            await fetch(urlCategories)
+                .then(response => response.json())
+                .then(response => setCategories(response))
+        } catch (error) {
+            console.error('ERROR: ', error)
+        }
+    }
+    useEffect(() => {
+        getAllCategories()
+    }, [])
+
+
+    const options = categories.map((cat) => {
+            return <option value={cat.id} key={cat.id}>{cat.title}</option>
+        })
 
     const addNewTask = (e) => {
         e.preventDefault()
         const tempTask = {
-            id: Date.now(),
             ...task
         }
         create(tempTask)
-        //console.log('date: ', typeof(tempTask.executeDate))
         setTask({
             title: '',
             executeDate: new Date(),
             description: '',
+            isActive: true,
             categoryId: ''
         })
     }
@@ -40,13 +60,13 @@ const TasksForm = ({create}) => {
                     />
                 </div>
                 <div className='col-md-4'>
-                    <input
-                        className='form-control'
-                        type="text"
-                        placeholder='Выберите категорию'
-                        value={task.categoryId}
-                        onChange={e => setTask({...task, categoryId: e.target.value})}
-                    />
+                    <select
+                        className='form-select'
+                        //value={task.categoryId}
+                        //onChange={e => setTask({...task, categoryId: e.target.value})}
+                    >
+                        {options}
+                    </select>
                 </div>
                 <div className='col-md-2'>
                     <input

@@ -5,6 +5,7 @@ import TasksForm from "./Forms/TasksForm";
 import ModalTasks from "./UI/ModalWindow/ModalTasks";
 import AddButtonSvg from "./UI/Buttons/svg/AddButtonSvg";
 import {urlGoals} from "../url/urlApi";
+import categories from "./Categories";
 
 const Tasks = () => {
 
@@ -50,9 +51,21 @@ const Tasks = () => {
         getAllGoals()
     }, [])
 
-    const createTask = (newTask) => {
-        // setTasks([...tasks, newTask])
-        // setModal(false)
+    async function createTask (newTask) {
+        try {
+            await fetch(urlGoals, {
+                method: "POST",
+                mode: 'cors',
+                body: JSON.stringify(newTask),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            setGoals(newTask)
+            getAllGoals()
+        } catch (error) {
+            console.error("Ошибка:", error);
+        }
     }
 
     const upDateTask = (editTask) => {
@@ -63,8 +76,21 @@ const Tasks = () => {
         // })
     }
 
-    const remoteTask = (delTask) => {
-        //setTasks(tasks.filter(t => t.id !== delTask.id))
+    async function remoteTask (delTask) {
+        try {
+            await fetch(urlGoals + '/' + `${delTask.id}`, {
+                method: "DELETE",
+                mode: 'cors',
+                body: JSON.stringify(delTask),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            setGoals(delTask)
+            getAllGoals()
+        } catch (error) {
+            console.error("Ошибка:", error);
+        }
     }
 
 
