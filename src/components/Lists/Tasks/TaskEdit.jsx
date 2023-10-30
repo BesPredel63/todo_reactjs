@@ -2,13 +2,17 @@ import React, {useState} from 'react';
 import EditButtonSvg from "../../UI/Buttons/svg/EditButtonSvg";
 import DeleteButtonSvg from "../../UI/Buttons/svg/DeleteButtonSvg";
 
-const TaskEdit = ({currentTask, update, setIsEditing}) => {
+const TaskEdit = ({currentTask, categories, update, setIsEditing}) => {
 
     const [task, setTask] = useState({
         title: currentTask.title,
         categoryId: currentTask.categoryId,
         executeDate: currentTask.executeDate,
         description: currentTask.description
+    })
+
+    const options = categories.map((cat) => {
+        return <option value={cat.id} key={cat.id}>{cat.title}</option>
     })
 
     const upDateTask = (e) => {
@@ -38,11 +42,13 @@ const TaskEdit = ({currentTask, update, setIsEditing}) => {
                     />
                 </div>
                 <div>
-                    <input
-                        type='text'
+                    <select
+                        className='form-select'
                         value={task.categoryId}
                         onChange={e => setTask({...task, categoryId: e.target.value})}
-                    />
+                    >
+                        {options}
+                    </select>
                 </div>
                 <div className='tasksBlockDate'>
                     <input

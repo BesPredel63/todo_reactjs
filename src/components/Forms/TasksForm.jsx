@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import EditButtonSvg from "../UI/Buttons/svg/EditButtonSvg";
 import {urlCategories} from "../../url/urlApi";
 
-const TasksForm = ({create}) => {
+const TasksForm = ({create, categories}) => {
 
     const [task, setTask] = useState({
         title: '',
@@ -11,21 +11,6 @@ const TasksForm = ({create}) => {
         isActive: true,
         categoryId: ''
     })
-    const [categories, setCategories] = useState([])
-
-    async function getAllCategories() {
-        try {
-            await fetch(urlCategories)
-                .then(response => response.json())
-                .then(response => setCategories(response))
-        } catch (error) {
-            console.error('ERROR: ', error)
-        }
-    }
-    useEffect(() => {
-        getAllCategories()
-    }, [])
-
 
     const options = categories.map((cat) => {
             return <option value={cat.id} key={cat.id}>{cat.title}</option>

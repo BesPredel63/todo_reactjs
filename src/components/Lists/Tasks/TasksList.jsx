@@ -3,7 +3,7 @@ import EditButtonNoSvg from "../../UI/Buttons/noSvg/EditButtonNoSvg";
 import DeleteButtonNoSvg from "../../UI/Buttons/noSvg/DeleteButtonNoSvg";
 import TaskEdit from "./TaskEdit";
 
-const TasksList = ({tasks, update, remote}) => {
+const TasksList = ({tasks, categories, update, remote}) => {
 
     const [isEditing, setIsEditing] = useState(false)
     const [currentTask, setCurrentTask] = useState()
@@ -53,7 +53,7 @@ const TasksList = ({tasks, update, remote}) => {
                         </div>
                     </div>
                     :
-                        <TaskEdit currentTask={currentTask} update={update} setIsEditing={setIsEditing}/>
+                        <TaskEdit currentTask={currentTask} categories={categories} update={update} setIsEditing={setIsEditing}/>
                 )
             }
         </div>

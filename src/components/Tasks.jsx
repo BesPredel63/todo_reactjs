@@ -4,7 +4,7 @@ import '../components/Lists/Tasks/tasksStyle.css'
 import TasksForm from "./Forms/TasksForm";
 import ModalTasks from "./UI/ModalWindow/ModalTasks";
 import AddButtonSvg from "./UI/Buttons/svg/AddButtonSvg";
-import {urlGoals} from "../url/urlApi";
+import {urlCategories, urlGoals} from "../url/urlApi";
 import categories from "./Categories";
 
 const Tasks = () => {
@@ -36,6 +36,20 @@ const Tasks = () => {
 
     const [goals, setGoals] = useState([])
     const [modal, setModal] = useState(false)
+    const [categories, setCategories] = useState([])
+
+    async function getAllCategories() {
+        try {
+            await fetch(urlCategories)
+                .then(response => response.json())
+                .then(response => setCategories(response))
+        } catch (error) {
+            console.error('ERROR: ', error)
+        }
+    }
+    useEffect(() => {
+        getAllCategories()
+    }, [])
 
     async function getAllGoals() {
         try {
@@ -111,10 +125,10 @@ const Tasks = () => {
                 Новая задача
             </AddButtonSvg>
             <ModalTasks visible={modal} setVisible={setModal}>
-                <TasksForm create={createTask}/>
+                <TasksForm create={createTask} categories={categories} />
             </ModalTasks>
 
-            <TasksList tasks={goals} update={upDateTask} remote={remoteTask}/>
+            <TasksList tasks={goals} categories={categories} update={upDateTask} remote={remoteTask}/>
         </div>
     );
 };
