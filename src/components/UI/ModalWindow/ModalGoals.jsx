@@ -1,7 +1,7 @@
 import React from 'react';
-import cls from './ModalTasks.module.css'
+import cls from './ModalGoals.module.css'
 
-const ModalTasks = ({children, visible, setVisible}) => {
+const ModalGoals = ({children, visible, setVisible}) => {
 
     const rootClasses = [cls.myModal]
     if (visible) {
@@ -17,4 +17,4 @@ const ModalTasks = ({children, visible, setVisible}) => {
     );
 };
 
-export default ModalTasks;
+export default ModalGoals;

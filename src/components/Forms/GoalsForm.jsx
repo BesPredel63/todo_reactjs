@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import EditButtonSvg from "../UI/Buttons/svg/EditButtonSvg";
 import {urlCategories} from "../../url/urlApi";
 
-const TasksForm = ({create, categories}) => {
+const GoalsForm = ({create, categories}) => {
 
     const [task, setTask] = useState({
         title: '',
@@ -77,4 +77,4 @@ const TasksForm = ({create, categories}) => {
     );
 };
 
-export default TasksForm;
+export default GoalsForm;

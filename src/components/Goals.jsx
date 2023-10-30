@@ -1,38 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import TasksList from "./Lists/Tasks/TasksList";
+import React, {useEffect, useMemo, useState} from 'react';
+import GoalsList from "./Lists/Tasks/GoalsList";
 import '../components/Lists/Tasks/tasksStyle.css'
-import TasksForm from "./Forms/TasksForm";
-import ModalTasks from "./UI/ModalWindow/ModalTasks";
+import GoalsForm from "./Forms/GoalsForm";
+import ModalGoals from "./UI/ModalWindow/ModalGoals";
 import AddButtonSvg from "./UI/Buttons/svg/AddButtonSvg";
 import {urlCategories, urlGoals} from "../url/urlApi";
-import categories from "./Categories";
 
-const Tasks = () => {
-
-    // const [tasks, setTasks] = useState([
-    //     {
-    //         id: 1,
-    //         title: 'Реализовать Frontend часть',
-    //         executeDate: '2023-07-31',
-    //         description: 'Реализовать CRUD для всех компонентов. ' +
-    //             'И еще какой то текст, для того чтобы проверить длину, на которую заполнится пространство.',
-    //         categoryId: 'Рабоча'
-    //     },
-    //     {
-    //         id: 2,
-    //         title: 'Реализовать Backend часть',
-    //         executeDate: '2023-08-07',
-    //         description: 'Прием запросов с помощью JSON',
-    //         categoryId: 'Семья'
-    //     },
-    //     {
-    //         id: 3,
-    //         title: 'Реализовать авторизацию',
-    //         executeDate: '2023-08-14',
-    //         description: 'Настроить вход и регистрацию',
-    //         categoryId: 'Личное'
-    //     },
-    // ])
+const Goals = () => {
 
     const [goals, setGoals] = useState([])
     const [modal, setModal] = useState(false)
@@ -124,13 +98,12 @@ const Tasks = () => {
             <AddButtonSvg onClick={() => setModal(true)}>
                 Новая задача
             </AddButtonSvg>
-            <ModalTasks visible={modal} setVisible={setModal}>
-                <TasksForm create={createTask} categories={categories} />
-            </ModalTasks>
-
-            <TasksList tasks={goals} categories={categories} update={upDateTask} remote={remoteTask}/>
+            <ModalGoals visible={modal} setVisible={setModal}>
+                <GoalsForm create={createTask} categories={categories} />
+            </ModalGoals>
+            <GoalsList goals={goals} categories={categories} update={upDateTask} remote={remoteTask}/>
         </div>
     );
 };
 
-export default Tasks;
+export default Goals;

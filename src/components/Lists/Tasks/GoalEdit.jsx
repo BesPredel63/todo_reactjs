@@ -1,27 +1,24 @@
 import React, {useState} from 'react';
-import EditButtonSvg from "../../UI/Buttons/svg/EditButtonSvg";
-import DeleteButtonSvg from "../../UI/Buttons/svg/DeleteButtonSvg";
+const GoalEdit = ({currentGoal, categories, update, setIsEditing}) => {
 
-const TaskEdit = ({currentTask, categories, update, setIsEditing}) => {
-
-    const [task, setTask] = useState({
-        title: currentTask.title,
-        categoryId: currentTask.categoryId,
-        executeDate: currentTask.executeDate,
-        description: currentTask.description
+    const [goal, setGoal] = useState({
+        title: currentGoal.title,
+        categoryId: currentGoal.categoryId,
+        executeDate: currentGoal.executeDate,
+        description: currentGoal.description
     })
 
     const options = categories.map((cat) => {
         return <option value={cat.id} key={cat.id}>{cat.title}</option>
     })
 
-    const upDateTask = (e) => {
+    const upDateGoal = (e) => {
         e.preventDefault()
-        let tempTask = {
-            id: currentTask.id,
-            ...task
+        let tempGoal = {
+            id: currentGoal.id,
+            ...goal
         }
-        update(tempTask)
+        update(tempGoal)
         setIsEditing(false)
     }
 
@@ -31,21 +28,21 @@ const TaskEdit = ({currentTask, categories, update, setIsEditing}) => {
     }
 
     return (
-        <div className='row tasksBlock' key={task.id}>
+        <div className='row tasksBlock' key={goal.id}>
             <div className='tasksBlockItem'>
                 <div>
                     <input
                         className='form-control'
                         type="text"
-                        value={task.title}
-                        onChange={e => setTask({...task, title: e.target.value})}
+                        value={goal.title}
+                        onChange={e => setGoal({...goal, title: e.target.value})}
                     />
                 </div>
                 <div>
                     <select
                         className='form-select'
-                        value={task.categoryId}
-                        onChange={e => setTask({...task, categoryId: e.target.value})}
+                        value={goal.categoryId}
+                        onChange={e => setGoal({...goal, categoryId: e.target.value})}
                     >
                         {options}
                     </select>
@@ -54,8 +51,8 @@ const TaskEdit = ({currentTask, categories, update, setIsEditing}) => {
                     <input
                         className='form-control'
                         type="date"
-                        value={task.executeDate}
-                        onChange={e => setTask({...task, executeDate: e.target.value})}
+                        value={goal.executeDate}
+                        onChange={e => setGoal({...goal, executeDate: e.target.value})}
                     />
                 </div>
             </div>
@@ -65,17 +62,17 @@ const TaskEdit = ({currentTask, categories, update, setIsEditing}) => {
                         className='form-control'
                         cols="30"
                         rows="6"
-                        value={task.description}
-                        onChange={e => setTask({...task, description: e.target.value})}
+                        value={goal.description}
+                        onChange={e => setGoal({...goal, description: e.target.value})}
                     />
                 </div>
             </div>
             <div className='tasksBlockBtn'>
-                <button className='btn btn-outline-success' onClick={upDateTask}>Сохранить</button>
+                <button className='btn btn-outline-success' onClick={upDateGoal}>Сохранить</button>
                 <button className='btn btn-outline-danger' onClick={cancelUpdate}>Отмена</button>
             </div>
         </div>
     );
 };
 
-export default TaskEdit;
+export default GoalEdit;

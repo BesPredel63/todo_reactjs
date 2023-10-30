@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
 import EditButtonNoSvg from "../../UI/Buttons/noSvg/EditButtonNoSvg";
 import DeleteButtonNoSvg from "../../UI/Buttons/noSvg/DeleteButtonNoSvg";
-import TaskEdit from "./TaskEdit";
+import GoalEdit from "./GoalEdit";
 
-const TasksList = ({tasks, categories, update, remote}) => {
+const GoalsList = ({goals, categories, update, remote}) => {
 
     const [isEditing, setIsEditing] = useState(false)
-    const [currentTask, setCurrentTask] = useState()
+    const [currentGoal, setCurrentGoal] = useState()
 
     // Настройки для локализации даты - необходимо доработать
     // при сохранении новой записи выдает ошибку, возможно нужна проверка данных или на выхоже получаем не тот тип данных
     // const options = { year: 'numeric', month: 'long', day: 'numeric' }
     //     .toLocaleDateString(undefined, options)
 
-    if (!tasks.length) {
+    if (!goals.length) {
         return (
             <h4>Список задач пуст</h4>
         )
@@ -22,42 +22,42 @@ const TasksList = ({tasks, categories, update, remote}) => {
     return (
         <div>
             {
-                tasks.map((t, index) =>
-                    currentTask !== t || isEditing !== true
+                goals.map((g, index) =>
+                    currentGoal !== g || isEditing !== true
                     ?
-                    <div className='row tasksBlock' key={t.id}>
+                    <div className='row tasksBlock' key={g.id}>
                         <div className='tasksBlockItem'>
                             <div>
-                                <strong>{index + 1}. {t.title}</strong>
+                                <strong>{index + 1}. {g.title}</strong>
                             </div>
                             <div>
-                                <strong>Категория: </strong><span style={{color: `${t.category.color}`}}>{t.category.title}</span>
+                                <strong>Категория: </strong><span style={{color: `${g.category.color}`}}>{g.category.title}</span>
                             </div>
                             <div className='tasksBlockDate'>
-                                <strong>Дата исполнения:</strong> {t.executeDate}
+                                <strong>Дата исполнения:</strong> {g.executeDate}
                             </div>
                         </div>
                         <div>
                             <div className='tasksBlockDescription'>
-                                {t.description}
+                                {g.description}
                             </div>
                         </div>
                         <div className='tasksBlockBtn'>
                             <EditButtonNoSvg onClick={() => {
-                                setCurrentTask(t)
+                                setCurrentGoal(g)
                                 setIsEditing(true)}}
                             >
                                 Изменить
                             </EditButtonNoSvg>
-                            <DeleteButtonNoSvg onClick={() => remote(t)}>Удалить</DeleteButtonNoSvg>
+                            <DeleteButtonNoSvg onClick={() => remote(g)}>Удалить</DeleteButtonNoSvg>
                         </div>
                     </div>
                     :
-                        <TaskEdit currentTask={currentTask} categories={categories} update={update} setIsEditing={setIsEditing}/>
+                        <GoalEdit currentGoal={currentGoal} categories={categories} update={update} setIsEditing={setIsEditing}/>
                 )
             }
         </div>
     );
 };
 
-export default TasksList;
+export default GoalsList;

@@ -14,7 +14,7 @@ const NavBar = () => {
     return (
         <nav className="primary-nav">
             <NavLink style={navLinkStyles} to="/">
-                Tasks
+                Goals
             </NavLink>
             <NavLink style={navLinkStyles} to="/categories">
                 Categories
