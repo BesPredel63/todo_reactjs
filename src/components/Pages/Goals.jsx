@@ -1,15 +1,32 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import GoalsList from "../Lists/Tasks/GoalsList";
-import '../Lists/Tasks/tasksStyle.css'
+import GoalsList from "../Lists/Goals/GoalsList";
+import '../Lists/Goals/tasksStyle.css'
 import GoalsForm from "../Forms/GoalsForm";
 import ModalGoals from "../UI/ModalWindow/ModalGoals";
 import AddButtonSvg from "../UI/Buttons/svg/AddButtonSvg";
-import {urlCategories, urlGoals} from "../../url/urlApi";
+import {urlGoals} from "../../url/urlApi";
+import GoalFilter from "../Filters/GoalFilter";
 
 const Goals = () => {
 
     const [goals, setGoals] = useState([])
     const [modal, setModal] = useState(false)
+    const [filter, setFilter] = useState({sort: '', query: ''})
+
+    const sortedGoals = useMemo(() => {
+        if (filter.sort) {
+            return [...goals].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
+        }
+        return goals
+    },[filter.sort, goals])
+
+    const sortedAndSearchedUsers = useMemo(() => {
+        return sortedGoals.filter(goal => {
+            return goal.title.toLowerCase().includes(filter.query.toLowerCase()) ||
+                goal.description.toLowerCase().includes(filter.query.toLowerCase()) ||
+                goal.executeDate.toLowerCase().includes(filter.query.toLowerCase())
+        })
+    }, [filter.query, sortedGoals])
 
     async function getAllGoals() {
         try {
@@ -87,7 +104,11 @@ const Goals = () => {
             <ModalGoals visible={modal} setVisible={setModal}>
                 <GoalsForm create={createTask} />
             </ModalGoals>
-            <GoalsList goals={goals} update={upDateTask} remote={remoteTask}/>
+            <GoalFilter
+                filter={filter}
+                setFilter={setFilter}
+            />
+            <GoalsList goals={sortedAndSearchedUsers} update={upDateTask} remote={remoteTask}/>
         </div>
     );
 };

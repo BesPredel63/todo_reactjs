@@ -58,7 +58,7 @@ const GoalsList = ({goals, categories, update, remote}) => {
                         </div>
                     </div>
                     :
-                        <GoalEdit currentGoal={currentGoal} categories={categories} update={update} setIsEditing={setIsEditing}/>
+                    <GoalEdit currentGoal={currentGoal} categories={categories} update={update} setIsEditing={setIsEditing}/>
                 )
             }
         </div>
