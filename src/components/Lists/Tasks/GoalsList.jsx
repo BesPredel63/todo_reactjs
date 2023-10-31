@@ -13,6 +13,16 @@ const GoalsList = ({goals, categories, update, remote}) => {
     // const options = { year: 'numeric', month: 'long', day: 'numeric' }
     //     .toLocaleDateString(undefined, options)
 
+    const localeDate = (executeDate) => {
+        const date = new Date(executeDate)
+        const shortTime = new Intl.DateTimeFormat("ru").format(date);
+        return (
+            <>
+                <strong>Дата исполнения:</strong> {shortTime}
+            </>
+        )
+    }
+
     if (!goals.length) {
         return (
             <h4>Список задач пуст</h4>
@@ -34,7 +44,7 @@ const GoalsList = ({goals, categories, update, remote}) => {
                                 <strong>Категория: </strong><span style={{color: `${g.category.color}`}}>{g.category.title}</span>
                             </div>
                             <div className='tasksBlockDate'>
-                                <strong>Дата исполнения:</strong> {g.executeDate}
+                                {localeDate(g.executeDate)}
                             </div>
                         </div>
                         <div>
