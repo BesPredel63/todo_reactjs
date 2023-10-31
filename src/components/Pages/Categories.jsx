@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import CategoriesList from "./Lists/Categories/CategoriesList";
-import CategoryForm from "./Forms/CategoryForm";
-import {urlCategories} from "../url/urlApi";
+import CategoriesList from "../Lists/Categories/CategoriesList";
+import CategoryForm from "../Forms/CategoryForm";
+import {urlCategories} from "../../url/urlApi";
 
 const Categories = () => {
 

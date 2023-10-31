@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import EditButtonSvg from "../UI/Buttons/svg/EditButtonSvg";
-import {urlCategories} from "../../url/urlApi";
+import SelectCategories from "../UI/Selects/SelectCategories";
 
-const GoalsForm = ({create, categories}) => {
+const GoalsForm = ({create}) => {
 
     const [task, setTask] = useState({
         title: '',
@@ -11,10 +11,6 @@ const GoalsForm = ({create, categories}) => {
         isActive: true,
         categoryId: ''
     })
-
-    const options = categories.map((cat) => {
-            return <option value={cat.id} key={cat.id}>{cat.title}</option>
-        })
 
     const addNewTask = (e) => {
         e.preventDefault()
@@ -45,13 +41,10 @@ const GoalsForm = ({create, categories}) => {
                     />
                 </div>
                 <div className='col-md-4'>
-                    <select
-                        className='form-select'
+                    <SelectCategories
                         value={task.categoryId}
                         onChange={e => setTask({...task, categoryId: e.target.value})}
-                    >
-                        {options}
-                    </select>
+                    />
                 </div>
                 <div className='col-md-2'>
                     <input

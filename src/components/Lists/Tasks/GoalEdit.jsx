@@ -1,15 +1,13 @@
 import React, {useState} from 'react';
-const GoalEdit = ({currentGoal, categories, update, setIsEditing}) => {
+import SelectCategories from "../../UI/Selects/SelectCategories";
+
+const GoalEdit = ({currentGoal, update, setIsEditing}) => {
 
     const [goal, setGoal] = useState({
         title: currentGoal.title,
         categoryId: currentGoal.categoryId,
         executeDate: currentGoal.executeDate,
         description: currentGoal.description
-    })
-
-    const options = categories.map((cat) => {
-        return <option value={cat.id} key={cat.id}>{cat.title}</option>
     })
 
     const upDateGoal = (e) => {
@@ -39,13 +37,10 @@ const GoalEdit = ({currentGoal, categories, update, setIsEditing}) => {
                     />
                 </div>
                 <div>
-                    <select
-                        className='form-select'
+                    <SelectCategories
                         value={goal.categoryId}
                         onChange={e => setGoal({...goal, categoryId: e.target.value})}
-                    >
-                        {options}
-                    </select>
+                    />
                 </div>
                 <div className='tasksBlockDate'>
                     <input

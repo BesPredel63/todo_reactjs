@@ -1,9 +1,9 @@
 import React from "react";
 import {Route, Routes} from 'react-router-dom';
 import NavBar from "./components/UI/NavBar/NavBar";
-import Goals from "./components/Goals";
-import Categories from "./components/Categories";
-import NotFound from "./components/NotFound";
+import Goals from "./components/Pages/Goals";
+import Categories from "./components/Pages/Categories";
+import NotFound from "./components/Pages/NotFound";
 import './styles/App.css';
 
 function App() {

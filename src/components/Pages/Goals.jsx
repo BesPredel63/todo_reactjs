@@ -1,29 +1,15 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import GoalsList from "./Lists/Tasks/GoalsList";
-import '../components/Lists/Tasks/tasksStyle.css'
-import GoalsForm from "./Forms/GoalsForm";
-import ModalGoals from "./UI/ModalWindow/ModalGoals";
-import AddButtonSvg from "./UI/Buttons/svg/AddButtonSvg";
-import {urlCategories, urlGoals} from "../url/urlApi";
+import GoalsList from "../Lists/Tasks/GoalsList";
+import '../Lists/Tasks/tasksStyle.css'
+import GoalsForm from "../Forms/GoalsForm";
+import ModalGoals from "../UI/ModalWindow/ModalGoals";
+import AddButtonSvg from "../UI/Buttons/svg/AddButtonSvg";
+import {urlCategories, urlGoals} from "../../url/urlApi";
 
 const Goals = () => {
 
     const [goals, setGoals] = useState([])
     const [modal, setModal] = useState(false)
-    const [categories, setCategories] = useState([])
-
-    async function getAllCategories() {
-        try {
-            await fetch(urlCategories)
-                .then(response => response.json())
-                .then(response => setCategories(response))
-        } catch (error) {
-            console.error('ERROR: ', error)
-        }
-    }
-    useEffect(() => {
-        getAllCategories()
-    }, [])
 
     async function getAllGoals() {
         try {
@@ -99,9 +85,9 @@ const Goals = () => {
                 Новая задача
             </AddButtonSvg>
             <ModalGoals visible={modal} setVisible={setModal}>
-                <GoalsForm create={createTask} categories={categories} />
+                <GoalsForm create={createTask} />
             </ModalGoals>
-            <GoalsList goals={goals} categories={categories} update={upDateTask} remote={remoteTask}/>
+            <GoalsList goals={goals} update={upDateTask} remote={remoteTask}/>
         </div>
     );
 };

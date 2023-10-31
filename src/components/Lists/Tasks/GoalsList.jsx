@@ -8,17 +8,12 @@ const GoalsList = ({goals, categories, update, remote}) => {
     const [isEditing, setIsEditing] = useState(false)
     const [currentGoal, setCurrentGoal] = useState()
 
-    // Настройки для локализации даты - необходимо доработать
-    // при сохранении новой записи выдает ошибку, возможно нужна проверка данных или на выхоже получаем не тот тип данных
-    // const options = { year: 'numeric', month: 'long', day: 'numeric' }
-    //     .toLocaleDateString(undefined, options)
-
     const localeDate = (executeDate) => {
         const date = new Date(executeDate)
-        const shortTime = new Intl.DateTimeFormat("ru").format(date);
+        const shortDate = new Intl.DateTimeFormat("ru").format(date);
         return (
             <>
-                <strong>Дата исполнения:</strong> {shortTime}
+                <strong>Дата исполнения:</strong> {shortDate}
             </>
         )
     }
