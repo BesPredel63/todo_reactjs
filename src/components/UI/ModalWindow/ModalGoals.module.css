@@ -6,6 +6,7 @@
     left: 0;
     display: none;
     background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
 }
 
 .myModal.active {
@@ -20,4 +21,5 @@
     background: white;
     border-radius: 16px;
     min-width: 850px;
+    z-index: 100;
 }
