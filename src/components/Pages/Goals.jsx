@@ -17,14 +17,14 @@ const Goals = () => {
         if (filter.sort) {
             return [...goals].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
         }
-        return goals
+        return Array.from(goals)
     },[filter.sort, goals])
 
     const sortedAndSearchedUsers = useMemo(() => {
         return sortedGoals.filter(goal => {
             return goal.title.toLowerCase().includes(filter.query.toLowerCase()) ||
-                goal.description.toLowerCase().includes(filter.query.toLowerCase()) ||
-                goal.executeDate.toLowerCase().includes(filter.query.toLowerCase())
+                   goal.description.toLowerCase().includes(filter.query.toLowerCase()) ||
+                   goal.executeDate.toLowerCase().includes(filter.query.toLowerCase())
         })
     }, [filter.query, sortedGoals])
 
