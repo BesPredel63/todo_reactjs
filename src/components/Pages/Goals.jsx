@@ -98,11 +98,11 @@ const Goals = () => {
         <div>
             <h2>Задачи</h2>
 
-            <AddButtonSvg onClick={() => setModal(true)}>
+            <AddButtonSvg onClick={()=>setModal(true)}>
                 Новая задача
             </AddButtonSvg>
             <ModalGoals visible={modal} setVisible={setModal}>
-                <GoalsForm create={createTask} />
+                <GoalsForm create={createTask} setVisible={setModal} />
             </ModalGoals>
             <GoalFilter
                 filter={filter}

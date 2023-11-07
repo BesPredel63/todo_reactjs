@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import EditButtonSvg from "../UI/Buttons/svg/EditButtonSvg";
 import SelectCategories from "../UI/Selects/SelectCategories";
+import DeleteButtonSvg from "../UI/Buttons/svg/DeleteButtonSvg";
 
-const GoalsForm = ({create}) => {
+const GoalsForm = ({create, setVisible}) => {
 
     const [task, setTask] = useState({
         title: '',
@@ -25,6 +26,12 @@ const GoalsForm = ({create}) => {
             isActive: true,
             categoryId: ''
         })
+        setVisible(false)
+    }
+
+    const cancelAdded = (e) => {
+        e.preventDefault()
+        setVisible(false)
     }
 
     return (
@@ -66,6 +73,7 @@ const GoalsForm = ({create}) => {
                 />
             </div>
             <EditButtonSvg onClick={addNewTask}>Сохранить</EditButtonSvg>
+            <DeleteButtonSvg onClick={cancelAdded}>Отмена</DeleteButtonSvg>
         </div>
     );
 };
